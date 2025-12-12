@@ -8,7 +8,7 @@ INSERT INTO departments (name, description) VALUES
 INSERT INTO users (user_id, first_name, last_name, email, phone) VALUES
 ('1011234567', 'Norah', 'Helal', 'norahaldakheel1441@gmail.com', '0504709942'), -- الموظفة 1
 ('1019876543', 'Lama', 'Saleh', 'lamaSaleh@gmail.com', '0501234567'),          -- الموظفة 2
-('0000000000', 'Thmanyah', 'Company', 'contact1@thmanyah.com', '0112223333'), -- العميل 3 (شركة)
+('1234567890', 'Thmanyah', 'Company', 'contact1@thmanyah.com', '0112223333'), -- العميل 3 (شركة)
 ('1015555555', 'John', 'Doe', 'john1@gmail.com', '0555555555');  -- العميل 4
 
 -- تصنيف المستخدمين: إضافة بياناتهم في الجداول الفرعية
@@ -23,7 +23,7 @@ INSERT INTO employees (user_id, job_title, salary, dept_id) VALUES
 -- 2. العملاء
 --  عميل شركة ثمانية
 INSERT INTO customers (user_id, customer_type, organization_name) VALUES
-('0000000000', 'Organization', 'Thmanyah');
+('1234567890', 'Organization', 'Thmanyah');
 
 -- John Doe عميل فرد
 INSERT INTO customers (user_id, customer_type, organization_name) VALUES
@@ -51,7 +51,7 @@ Insert into ticket (title, description, status, priority, creation_date, reslout
 ('New Office Network Expansion Project', 'Design and plan the infrastructure setup for 30 new employees.', 'open', 'urgent', '2025-12-05', NULL, '1101552135', 1, '1011234567'), 
 
 -- ticket2 :  itعيننا تذكرة شركة ثمانيه الى ريما في قسم الـ 
-('Sales Main Server Downtime', 'Access to the main sales database is currently impossible, requires senior technical intervention.', 'in progress', 'high', '2025-12-04', NULL, '1160265172', 1,'0000000000'),
+('Sales Main Server Downtime', 'Access to the main sales database is currently impossible, requires senior technical intervention.', 'in progress', 'high', '2025-12-04', NULL, '1160265172', 1,'1234567890'),
 
 -- Ticket 3 :  hr عيننا تذكرة لمى الى ساره في قسم الـ 
 ('Medical Insurance Policy Amendment', 'Request to upgrade the insurance category for my dependent.', 'open', 'medium', '2025-12-01', NULL, '1170265134', 3, '1019876543'),
