@@ -23,7 +23,7 @@ INSERT INTO employees (user_id, job_title, salary, dept_id) VALUES
 -- 2. العملاء
 --  عميل شركة ثمانية
 INSERT INTO customers (user_id, customer_type, organization_name) VALUES
-('1234567890', 'Organization', 'Thmanyah');
+('0000000000', 'Organization', 'Thmanyah');
 
 -- John Doe عميل فرد
 INSERT INTO customers (user_id, customer_type, organization_name) VALUES
