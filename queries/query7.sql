@@ -2,4 +2,3 @@
 SELECT f_id,comment
 FROM Feedback
 ORDER BY LENGTH(comment) DESC;
---

@@ -24,4 +24,3 @@ comment,
 u_id
 FROM Feedback
 WHERE rating >= 4
---

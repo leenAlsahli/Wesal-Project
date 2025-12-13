@@ -12,4 +12,3 @@ Join departments D on T.dept_id = D.dept_id
 left join Support_Agent SA On T.SAgent_ID = SA.SAgent_ID
 order by
     T.Ticket_ID;
---

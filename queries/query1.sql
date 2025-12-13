@@ -9,4 +9,3 @@ SELECT
 FROM users u
 JOIN employees e ON u.user_id = e.user_id
 JOIN departments d ON e.dept_id = d.dept_id;
---

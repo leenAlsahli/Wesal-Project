@@ -6,4 +6,3 @@ FROM departments d
 LEFT JOIN employees e ON d.dept_id = e.dept_id
 GROUP BY d.name
 ORDER BY total_employees DESC;
---
