@@ -98,4 +98,3 @@ CREATE TABLE Attachment ( -- جدول المرفقات
   ON DELETE CASCADE -- لو انحذفت التكت تنحذف المرفقات معها
   ON UPDATE CASCADE
 );
---

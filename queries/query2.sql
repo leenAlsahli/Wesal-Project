@@ -7,3 +7,4 @@ SELECT
 FROM users u
 JOIN customers c ON u.user_id = c.user_id
 WHERE c.customer_type = 'Individual'; -- مثال: عرض الأفراد فقط
+--

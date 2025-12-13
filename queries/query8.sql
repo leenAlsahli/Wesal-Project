@@ -12,3 +12,4 @@ FROM Feedback as f
 on f.u_id = u.user_id
 where f.u_id='1019876543'
 order by f.f_id;
+--
