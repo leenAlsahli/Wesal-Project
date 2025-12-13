@@ -1,4 +1,4 @@
-
+--Create Tables(Users, Departments, Employees, Customers)
 -- 1. جدول الأقسام (يجب إنشاؤه أولاً لأن الموظف يتبع لقسم)
 CREATE TABLE departments (
     dept_id SERIAL PRIMARY KEY,
@@ -13,16 +13,21 @@ CREATE TABLE users (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    phone VARCHAR(20),
-    contact_info TEXT,
-    
     -- شرط للتحقق
     CHECK (
         LENGTH(user_id) = 10 
         AND user_id ~ '^[0-9]+$'
     )
 );
--- 3. جدول الموظفين (يرث من المستخدمين ويرتبط بقسم)
+
+--3. جدول هواتف المستخدمين (multi value)
+CREATE TABLE user_phone (
+    u_id VARCHAR(10) REFERENCES users(user_id) ON DELETE CASCADE , 
+    phone_number VARCHAR(20) ,
+    PRIMARY KEY (u_id, phone_number)
+);
+
+-- 4. جدول الموظفين (يرث من المستخدمين ويرتبط بقسم)
 CREATE TABLE employees (
     user_id VARCHAR(10) PRIMARY KEY REFERENCES users(user_id) ON DELETE CASCADE, 
     job_title VARCHAR(100),
@@ -36,6 +41,8 @@ CREATE TABLE customers (
     customer_type VARCHAR(50), -- مثلًا: فرد، شركة
     organization_name VARCHAR(100)
 );
+--Create Tables( support_agent, support_agent_phone, ticket)
+--Create Tables(Users, Departments, Employees, Customers)
 
 --5. (departments يرتبط بجدول ) support agent جدول      
 create table support_agent (
@@ -71,14 +78,16 @@ create table ticket(
     --للتاكد من ان اولوية التذكرة محصورة على هذه الاربع حالات  
   creation_date   Date Not null,
   resloution_date Date,
-sagent_id VARCHAR(10) references support_agent(sagent_id),
+sagent_id VARCHAR(10) references support_agent(sagent_id)ON DELETE SET NULL,
        -- للوكيل المسؤول عن التذكرة foreign key 
        user_id VARCHAR(10) references users(user_id),
    -- لليوزر الذي انشئ التذكرة foreign key 
-  dept_id Int Not null references departments(dept_id)
+  dept_id Int Not null references departments(dept_id) ON DELETE RESTRICT 
   -- للقسم المسؤول عن التذكرة foreign key 
 
 ); 
+
+-- create tables (Feedback ,Attachment)
 
 CREATE TABLE Feedback(-- جدول الفيدباك 
   f_id SERIAL PRIMARY KEY,
@@ -98,4 +107,4 @@ CREATE TABLE Attachment ( -- جدول المرفقات
   ON DELETE CASCADE -- لو انحذفت التكت تنحذف المرفقات معها
   ON UPDATE CASCADE
 );
---
+
