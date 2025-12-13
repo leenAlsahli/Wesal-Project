@@ -1,46 +1,64 @@
---Create Tables(Users, Departments, Employees, Customers)
--- 1. جدول الأقسام (يجب إنشاؤه أولاً لأن الموظف يتبع لقسم)
-CREATE TABLE departments (
-    dept_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    description TEXT
-);
+INSERT INTO departments (name, description) VALUES
+('ITSupport', 'handles technical issues and tickets'),
+('Sales', 'Handles customer subscription and sales'),
+('HR', 'human resources and employee management'),
+('Finance', 'Manages payroll, billing, and accounting operations'),
+('Marketing', 'Handles advertising, campaigns, and public relations'),
+('Quality Assurance (QA)', 'Oversees product testing and ensures services meet required standards and reliability');
 
--- 2. جدول المستخدمين (السوبر كلاس - يحتوي على البيانات المشتركة)
-CREATE TABLE users (
-    -- الهوية الوطنية الآن هي المفتاح الأساسي (PRIMARY KEY)
-    user_id VARCHAR(10) PRIMARY KEY, 
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    -- شرط للتحقق
-    CHECK (
-        LENGTH(user_id) = 10 
-        AND user_id ~ '^[0-9]+$'
-    )
-);
+INSERT INTO users (user_id, first_name, last_name, email) VALUES
+('1011234567', 'Norah', 'Helal', 'norahaldakheel1441@gmail.com'),
+('1019876543', 'Lama', 'Saleh', 'lamaSaleh@gmail.com'),
+('1234567890', 'Thmanyah', 'Company', 'contact1@thmanyah.com'),
+('1015555555', 'John', 'Doe', 'john1@gmail.com'),
+('1016667777', 'Sarah', 'Ali', 'sarahaliii3@gmail.com'),
+('1001554723', 'Haifaa', 'Mohammed', 'haifaaMoh@gmail.com'),
+('1211830273', 'Faisal', 'AlOtaibi', 'otbfaisal@gmail.com'),
+('1008728973', 'Fatimah', 'Salman', 'fatimahs122@gmail.com'),
+('9998887776', 'STC', 'Solutions', 'support@stcs.com.sa'),
+('1191445233', 'Khalid', 'AlGhamdi', 'khaaalid1461@gmail.com'),
+('1152318253', 'Nouf', 'Fahad', 'nouf.f@gmail.com'),
+('0000000000', 'Jarir', 'Bookstore', 'care@jarir.com'),
+('1192757142', 'dhay', 'Fahad', 'dhay_2@gmail.com'),
+('1127302739', 'Ahmad', 'Alsaad', 'ahmadsss@gmail.com');
 
---3. جدول هواتف المستخدمين (multi value)
-CREATE TABLE user_phone (
-    u_id VARCHAR(10) REFERENCES users(user_id) ON DELETE CASCADE , 
-    phone_number VARCHAR(20) ,
-    PRIMARY KEY (u_id, phone_number)
-);
 
--- 4. جدول الموظفين (يرث من المستخدمين ويرتبط بقسم)
-CREATE TABLE employees (
-    user_id VARCHAR(10) PRIMARY KEY REFERENCES users(user_id) ON DELETE CASCADE, 
-    job_title VARCHAR(100),
-    salary DECIMAL(10, 2),
-    dept_id INT REFERENCES departments(dept_id) ON DELETE SET NULL
-);
+INSERT INTO user_phone (u_id, phone_number) VALUES
+('1011234567', '0504709942'),
+('1019876543', '0501234567'),
+('1001554723', '0509010000'),
+('1211830273', '0507008000'),
+('1008728973', '0505006000'),
+('1191445233', '0503004000'),
+('1192757142', '0503334445'),
+('1234567890', '0112223333'),
+('1015555555', '0555555555'),
+('1015555555', '0134567890'),
+('1016667777', '0559998888'),
+('9998887776', '0114445555'),
+('1152318253', '0553034040'),
+('0000000000', '920000089'),
+('1127302739', '0551012020'),
+('1127302739', '0551239876');
 
--- 4. جدول العملاء (يرث من المستخدمين)
-CREATE TABLE customers (
-    user_id VARCHAR(10) PRIMARY KEY REFERENCES users(user_id) ON DELETE CASCADE,
-    customer_type VARCHAR(50), -- مثلًا: فرد، شركة
-    organization_name VARCHAR(100)
-);
+
+INSERT INTO employees (user_id, job_title, salary, dept_id) VALUES
+('1011234567', 'Senior Technician', 25000.00, 1),
+('1019876543', 'HR Specialist', 12000.00, 3),
+('1191445233', 'Sales Manager', 28000.00, 2),
+('1001554723', 'Quality Tester', 40000.00, 6),
+('1211830273', 'Digital Strategist', 16000.00, 5),
+('1008728973', 'Accountant', 36000.00, 4),
+('1192757142', 'Recruitment Coordinator', 35000.00, 3);
+
+INSERT INTO customers (user_id, customer_type, organization_name) VALUES
+('1234567890', 'Organization', 'Thmanyah'),--شركة ثمانية
+('1015555555', 'Individual', NULL),--john
+('1016667777', 'Individual', NULL),--سارة
+('9998887776', 'Organization', 'STC Solutions'),-- شركة stc Solutions
+('0000000000', 'Organization', 'Jarir'),--شركة مكتبة جرير
+('1152318253', 'Individual', NULL),-- نوف
+('1127302739', 'Individual', NULL); --احمد 
 
 --  support agents اضافة
 Insert into support_agent (sagent_id,f_name, l_name, email, role, skills, dept_id) Values
