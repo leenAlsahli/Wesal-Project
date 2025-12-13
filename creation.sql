@@ -61,11 +61,13 @@ create table support_agent (
     )
 );
 --6. ( يخزن رقم هاتف او اكثر  ) support agentجدول ارقام هواتف الـ 
-create table support_agent_phone (
-  phone varchar(20) primary key ,
-sagent_id VARCHAR(10) REFERENCES support_agent(sagent_id) ON DELETE CASCADE
-    -- Support Agent عند حذف الـ phoneلنضمن حذف الـ
+CREATE TABLE support_agent_phone (
+  phone VARCHAR(20),
+  sagent_id VARCHAR(10)REFERENCES support_agent(sagent_id) ON DELETE CASCADE,
+  PRIMARY KEY (phone, sagent_id),
 );
+
+
 
 --7. ticketجدول الـ 
 create table ticket( 
@@ -107,4 +109,4 @@ CREATE TABLE Attachment ( -- جدول المرفقات
   ON DELETE CASCADE -- لو انحذفت التكت تنحذف المرفقات معها
   ON UPDATE CASCADE
 );
-
+--

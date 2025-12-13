@@ -23,7 +23,7 @@ rating,
 comment,
 u_id
 FROM Feedback
-WHERE rating >= 4
+WHERE rating >= 4;
 
 --   يعرض تذاكر الموظفين فقط مع تفاصيل الوظيفة والراتب
 
@@ -53,3 +53,4 @@ FROM users u
 LEFT JOIN Feedback f
 ON u.user_id = f.u_id 
 GROUP BY u.user_id , u.first_name ,u.last_name;
+--
